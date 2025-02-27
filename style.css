@@ -1,0 +1,240 @@
+.hide {
+    display: none;
+}
+
+body {
+    --background-color: white;
+    --color: black;
+    --elements-color: white;
+    --input-color: white;
+    background-color: var(--background-color);
+    color: var(--color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito Sans;
+    min-height: 100vh;
+}
+
+body.dark {
+    --background-color: hsl(207, 26%, 17%);
+    --color: white;
+    --elements-color: hsl(209, 23%, 22%);
+    --input-color: hsl(0, 0%, 52%);
+}
+
+header {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: var(--elements-color);
+    color: var(--color);
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90%;
+    margin-inline: auto;
+}
+
+.header-content a {
+    font-weight: 800;
+    font-size: 28px;
+    margin-block: 15px;
+    text-wrap: nowrap;
+    color: var(--color);
+    text-decoration: none;
+}
+
+header p {
+    font-weight: 600;
+    text-wrap: nowrap;
+    cursor: pointer;
+}
+
+main {
+    margin-top: 100px;
+    margin-bottom: 3%;
+    max-width: 90%;
+    margin-inline: auto;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-self: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--color);
+    background-color: var(--elements-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    transform: scale(1.02);
+}
+
+.card img {
+    width: 100%;
+    /* height: 50%; */
+}
+
+.card-text {
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.card-text p {
+    margin-block: 5px;
+}
+
+.card-text h3 {
+    margin-block: 16px;
+}
+
+.tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    flex-wrap: wrap;
+    row-gap: 20px;
+}
+
+.tools input {
+    width: 30%;
+    height: 45px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+    padding-left: 50px;
+    font-size: 100%;
+    background-color: var(--input-color);
+    color: var(--color);
+}
+
+.tools input::placeholder {
+    color: var(--color);
+}
+
+.tools i {
+    position: absolute;
+    left: 15px;
+}
+
+.tools select {
+    padding-left: 15px;
+    width: 15%;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+    height: 45px;
+    background-color: var(--input-color);
+    color: var(--color);
+}
+
+.tools select option {
+    max-width: 100%;
+}
+
+.errmsg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    color: red;
+    font-size: 100%;
+    text-wrap: nowrap;
+}
+
+
+
+
+
+
+/* Skeleton loader styles */
+.skeleton {
+    background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 5px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton-card {
+    width: 100%;
+    height: 320px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.skeleton.flag {
+    width: 100%;
+    height: 60%;
+    border-radius: 8px;
+}
+
+.skeleton.text {
+    width: 80%;
+    height: 15px;
+}
+
+.skeleton.text.title {
+    width: 60%;
+    height: 20px;
+}
+
+
+
+
+
+
+/* media */
+@media screen and (max-width: 900px) {
+    .header-content a {
+        font-size: 20px;
+    }
+
+    .tools input {
+        width: 100%;
+    }
+
+    option {
+        width: 100%;
+    }
+    
+    .tools i {
+        bottom: 80px;
+    }
+
+    .tools select {
+        width: 50%;
+    }
+}
