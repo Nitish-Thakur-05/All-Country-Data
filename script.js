@@ -59,23 +59,27 @@ const renderdata = (mydata) => {
 }
 
 let allCountriesData
-
-setTimeout(() => {
-    fetch('https://restcountries.com/v3.1/all').then((data) => {
-        if(data.status != 200) {
+document.querySelector('body').style.overflow = 'hidden'
+function showingData() {
+    setTimeout(() => {
+        fetch('https://restcountries.com/v3.1/all').then((data) => {
+            if(data.status != 200) {
+                hideSkeleton()
+                throw new Error (`ERROR CODE: ${data.status}`)
+            }
+            return data.json()
+        }).then((mydata) => {
+            document.querySelector('body').style.overflow = 'auto'
+            renderdata(mydata)
+            allCountriesData = mydata
+    
+        }). catch((err)=> {
             hideSkeleton()
-            throw new Error (`ERROR CODE: ${data.status}`)
-        }
-        return data.json()
-    }).then((mydata) => {
-        renderdata(mydata)
-        allCountriesData = mydata
-
-    }). catch((err)=> {
-        hideSkeleton()
-        showErrorMsg()
-    })
-}, 1000);
+            showErrorMsg()
+        })
+    }, 1000);
+}
+showingData()
 
 // search
 const searchbar = document.querySelector('.search-bar')
