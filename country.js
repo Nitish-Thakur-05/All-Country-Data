@@ -60,16 +60,25 @@ setTimeout(() => {
       if(fetchedData.borders) {
         const countryByCode = fetchedData.borders.map((curr) => {
             return fetch(`https://restcountries.com/v3.1/alpha/${curr}`).then((data) => {
+                if (!data.ok) {
+                    throw new Error(`Failed to fetch country: ${curr}`);
+                }
                  return data.json()
-             })
+             }).catch((err) => {
+                console.error(`Error fetching ${curr}:`, err);
+                return null; 
+            });
          })
+         
          Promise.all(countryByCode).then((data) => {
              const fregment = document.createDocumentFragment()   
              data.forEach(([curr]) => {
-                 const linkTag = document.createElement('a')
-                 linkTag.href = `country.html?name=${curr.name.common}`
-                 linkTag.innerHTML = `${curr.name.common}`
-                 fregment.appendChild(linkTag)
+                 if(curr) {
+                    const linkTag = document.createElement('a')
+                    linkTag.href = `country.html?name=${curr.name.common}`
+                    linkTag.innerHTML = `${curr.name.common}`
+                    fregment.appendChild(linkTag)
+                 }
              });
              border.appendChild(fregment)
          }).catch((err) => {
