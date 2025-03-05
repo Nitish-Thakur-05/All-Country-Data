@@ -81,6 +81,7 @@ main {
     color: var(--color);
     background-color: var(--elements-color);
     transition: all 0.2s ease-in-out;
+    max-width: 300px;
 }
 
 .card:hover {
@@ -236,5 +237,12 @@ main {
 
     .tools select {
         width: 50%;
+    }
+}
+
+
+@media screen and (max-width: 478px) {
+    .card{
+        max-width: 100%;
     }
 }
